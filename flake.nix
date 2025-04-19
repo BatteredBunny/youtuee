@@ -24,6 +24,15 @@
         youtuee = final.callPackage ./build.nix { };
       };
 
+      checks = forAllSystems (system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          service = pkgs.callPackage ./test.nix { nixosModule = self.nixosModules.default; };
+        }
+      );
+
       packages = forAllSystems (system:
         let
           pkgs = nixpkgsFor.${system};
