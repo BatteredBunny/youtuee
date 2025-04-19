@@ -1,42 +1,55 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
     { self
     , nixpkgs
-    , flake-utils
     , ...
-    } @ inputs: {
+    }:
+    let
+      inherit (nixpkgs) lib;
+
+      systems = lib.systems.flakeExposed;
+
+      forAllSystems = lib.genAttrs systems;
+
+      nixpkgsFor = forAllSystems (system: import nixpkgs {
+        inherit system;
+      });
+    in
+    {
       overlays.default = final: prev: {
-        youtuee = self.packages.default.${final.system};
+        youtuee = final.callPackage ./build.nix { };
       };
 
+      packages = forAllSystems (system:
+        let
+          pkgs = nixpkgsFor.${system};
+          overlay = lib.makeScope pkgs.newScope (final: self.overlays.default final pkgs);
+        in
+        {
+          inherit (overlay) youtuee;
+          default = overlay.youtuee;
+        }
+      );
+
+      devShells = forAllSystems (system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              go
+              yt-dlp
+
+              # ngrok
+            ];
+          };
+        });
+
       nixosModules.default = import ./module.nix;
-    }
-    //
-    (flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
-      in
-      with pkgs; {
-        devShells.default = mkShell {
-          buildInputs = [
-            go
-            yt-dlp
-
-            # ngrok
-          ];
-        };
-
-        packages = {
-          default = callPackage ./build.nix { };
-        };
-      }
-    ));
+    };
 }
