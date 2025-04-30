@@ -35,7 +35,7 @@ type Application struct {
 func (app *Application) GetVideoInfo(id string) (v VideoInfo, err error) {
 	cached, exists := app.CachedVideoInfo[id]
 	if exists {
-		fmt.Println("Getting cached response for ", id)
+		log.Println("Got cached response for ", id)
 		return cached, nil
 	} else {
 		v, err = GetVideoInfo(app.Conf.ytdlpBinary, id)
