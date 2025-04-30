@@ -16,7 +16,7 @@ func (app *Application) PathHandler(c *gin.Context) {
 		id := strings.TrimPrefix(path, "/")
 
 		if !VerifyPath(id) {
-			c.String(http.StatusBadRequest, http.StatusText(http.StatusBadRequest))
+			c.Redirect(http.StatusTemporaryRedirect, "https://www.youtube.com")
 			return
 		}
 
