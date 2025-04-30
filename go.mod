@@ -4,11 +4,13 @@ go 1.24.2
 
 require (
 	github.com/BatteredBunny/testingassert v0.3.3
+	github.com/PuerkitoBio/goquery v1.10.3
 	github.com/didip/tollbooth/v8 v8.0.1
 	github.com/gin-gonic/gin v1.10.0
 )
 
 require (
+	github.com/andybalholm/cascadia v1.3.3 // indirect
 	github.com/bytedance/sonic v1.13.2 // indirect
 	github.com/bytedance/sonic/loader v0.2.4 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect

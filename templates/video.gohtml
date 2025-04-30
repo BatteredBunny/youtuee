@@ -1,227 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="refresh" content="0;url=https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
-    <link
-      rel="shortcut icon"
-      href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon.ico"
-      type="image/x-icon"
-    />
-    <link
-      rel="icon"
-      href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon_32x32.png"
-      sizes="32x32"
-    />
-    <link
-      rel="icon"
-      href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon_48x48.png"
-      sizes="48x48"
-    />
-    <link
-      rel="icon"
-      href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon_96x96.png"
-      sizes="96x96"
-    />
-    <link
-      rel="icon"
-      href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon_144x144.png"
-      sizes="144x144"
-    />
-    <meta name="theme-color" content="#ff0000" />
-    <link
-      rel="manifest"
-      href="/manifest.webmanifest"
-      crossorigin="use-credentials"
-    />
-    <link rel="canonical" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
-    <link
-      rel="alternate"
-      media="handheld"
-      href="https://m.youtube.com/watch?v=dQw4w9WgXcQ"
-    />
-    <link
-      rel="alternate"
-      media="only screen and (max-width: 640px)"
-      href="https://m.youtube.com/watch?v=dQw4w9WgXcQ"
-    />
-    <title>
-      {{ .Title }} - YouTube
-    </title>
-    <meta
-      name="title"
-      content='{{ .Title }}'
-    />
-    <meta
-      name="description"
-      content="{{ .Description }}"
-    />
-    <link rel="shortlinkUrl" href="https://youtu.be/dQw4w9WgXcQ" />
-    <link
-      rel="alternate"
-      href="android-app://com.google.android.youtube/http/www.youtube.com/watch?v=dQw4w9WgXcQ"
-    />
-    <link
-      rel="alternate"
-      href="ios-app://544007664/vnd.youtube/www.youtube.com/watch?v=dQw4w9WgXcQ"
-    />
-    <link
-      rel="alternate"
-      type="application/json+oembed"
-      href="https://www.youtube.com/oembed?format=json&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{{ .Id }}"
-      title='{{ .Title }}'
-    />
-    <link
-      rel="alternate"
-      type="text/xml+oembed"
-      href="https://www.youtube.com/oembed?format=xml&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{{ .Id }}"
-      title='{{ .Title }}'
-    />
-    <link
-      rel="image_src"
-      href="https://i.ytimg.com/vi/{{ .Id }}/maxresdefault.jpg"
-    />
-    <meta property="og:site_name" content="YouTube" />
-    <meta
-      property="og:url"
-      content="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-    />
-    <meta
-      property="og:title"
-      content='{{ .Title }}'
-    />
-    <meta
-      property="og:image"
-      content="https://i.ytimg.com/vi/{{ .Id }}/maxresdefault.jpg"
-    />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="720" />
-    <meta
-      property="og:description"
-      content="{{ .Description }}"
-    />
-    <meta property="al:ios:app_store_id" content="544007664" />
-    <meta property="al:ios:app_name" content="YouTube" />
-    <meta
-      property="al:ios:url"
-      content="vnd.youtube://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks"
-    />
-    <meta
-      property="al:android:url"
-      content="vnd.youtube://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks"
-    />
-    <meta
-      property="al:web:url"
-      content="http://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks"
-    />
-    <meta property="og:type" content="video.other" />
-    <meta
-      property="og:video:url"
-      content="https://www.youtube.com/embed/dQw4w9WgXcQ"
-    />
-    <meta
-      property="og:video:secure_url"
-      content="https://www.youtube.com/embed/dQw4w9WgXcQ"
-    />
-    <meta property="og:video:type" content="text/html" />
-    <meta property="og:video:width" content="1280" />
-    <meta property="og:video:height" content="720" />
-    <meta property="al:android:app_name" content="YouTube" />
-    <meta property="al:android:package" content="com.google.android.youtube" />
-    <meta property="fb:app_id" content="87741124305" />
-    <meta name="twitter:card" content="player" />
-    <meta name="twitter:site" content="@youtube" />
-    <meta
-      name="twitter:url"
-      content="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-    />
-    <meta
-      name="twitter:title"
-      content='{{ .Title }}'
-    />
-    <meta
-      name="twitter:description"
-      content="{{ .Description }}"
-    />
-    <meta
-      name="twitter:image"
-      content="https://i.ytimg.com/vi/{{ .Id }}/maxresdefault.jpg"
-    />
-    <meta name="twitter:app:name:iphone" content="YouTube" />
-    <meta name="twitter:app:id:iphone" content="544007664" />
-    <meta name="twitter:app:name:ipad" content="YouTube" />
-    <meta name="twitter:app:id:ipad" content="544007664" />
-    <meta
-      name="twitter:app:url:iphone"
-      content="vnd.youtube://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks"
-    />
-    <meta
-      name="twitter:app:url:ipad"
-      content="vnd.youtube://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks"
-    />
-    <meta name="twitter:app:name:googleplay" content="YouTube" />
-    <meta
-      name="twitter:app:id:googleplay"
-      content="com.google.android.youtube"
-    />
-    <meta
-      name="twitter:app:url:googleplay"
-      content="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-    />
-    <meta
-      name="twitter:player"
-      content="https://www.youtube.com/embed/dQw4w9WgXcQ"
-    />
-    <meta name="twitter:player:width" content="1280" />
-    <meta name="twitter:player:height" content="720" />
-    <div
-      id="watch7-content"
-      class="watch-main-col"
-      itemscope
-      itemid=""
-      itemtype="http://schema.org/VideoObject"
-    >
-      <link
-        itemprop="url"
-        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-      /><meta
-        itemprop="name"
-        content='{{ .Title }}'
-      /><meta
-        itemprop="description"
-        content="{{ .Description }}"
-      /><meta itemprop="requiresSubscription" content="False" /><meta
-        itemprop="identifier"
-        content="{{ .Id }}"
-      /><span
-        itemprop="author"
-        itemscope
-        itemtype="http://schema.org/Person"
-        ><link
-          itemprop="url"
-          href="{{ .UploaderUrl }}" /><link
-          itemprop="name"
-          content="{{ .Uploader }}"
-      /></span>
-      <link
-        itemprop="thumbnailUrl"
-        href="https://i.ytimg.com/vi/{{ .Id }}/maxresdefault.jpg"
-      /><span
-        itemprop="thumbnail"
-        itemscope
-        itemtype="http://schema.org/ImageObject"
-        ><link
-          itemprop="url"
-          href="https://i.ytimg.com/vi/{{ .Id }}/maxresdefault.jpg" /><meta
-          itemprop="width"
-          content="1280" /><meta itemprop="height" content="720" /></span
-      ><link
-        itemprop="embedUrl"
-        href="https://www.youtube.com/embed/dQw4w9WgXcQ"
-      /><meta itemprop="playerType" content="HTML5 Flash" /><meta
-        itemprop="width"
-        content="1280"
-      />
-    </div>
-  </head>
+
+<head>
+  <meta http-equiv="refresh" content="0;url=https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  <link rel="shortcut icon" href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon.ico"
+    type="image/x-icon" />
+  <link rel="icon" href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon_32x32.png" sizes="32x32" />
+  <link rel="icon" href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon_48x48.png" sizes="48x48" />
+  <link rel="icon" href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon_96x96.png" sizes="96x96" />
+  <link rel="icon" href="https://www.youtube.com/s/desktop/c01ea7e3/img/logos/favicon_144x144.png" sizes="144x144" />
+  <meta name="theme-color" content="#ff0000" />
+  <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials" />
+  <link rel="canonical" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  <link rel="alternate" media="handheld" href="https://m.youtube.com/watch?v=dQw4w9WgXcQ" />
+  <link rel="alternate" media="only screen and (max-width: 640px)" href="https://m.youtube.com/watch?v=dQw4w9WgXcQ" />
+  <title>{{ .Title }} - YouTube</title>
+  <meta name="title" content="{{ .Title }}" />
+  <meta name="description" content="{{ .Description }}" />
+  <link rel="shortlinkUrl" href="https://youtu.be/dQw4w9WgXcQ" />
+  <link rel="alternate" href="android-app://com.google.android.youtube/http/www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  <link rel="alternate" href="ios-app://544007664/vnd.youtube/www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  <link rel="alternate" type="application/json+oembed"
+    href="https://www.youtube.com/oembed?format=json&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{{ .Id }}"
+    title="{{ .Title }}" />
+  <link rel="alternate" type="text/xml+oembed"
+    href="https://www.youtube.com/oembed?format=xml&amp;url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D{{ .Id }}"
+    title="{{ .Title }}" />
+  <link rel="image_src" href="{{ .Thumbnail }}" />
+  <meta property="og:site_name" content="YouTube" />
+  <meta property="og:url" content="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:image" content="{{ .Thumbnail }}" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+  <meta property="og:description" content="{{ .Description }}" />
+  <meta property="al:ios:app_store_id" content="544007664" />
+  <meta property="al:ios:app_name" content="YouTube" />
+  <meta property="al:ios:url" content="vnd.youtube://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks" />
+  <meta property="al:android:url" content="vnd.youtube://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks" />
+  <meta property="al:web:url" content="http://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks" />
+  <meta property="og:type" content="video.other" />
+  <meta property="og:video:url" content="https://www.youtube.com/embed/dQw4w9WgXcQ" />
+  <meta property="og:video:secure_url" content="https://www.youtube.com/embed/dQw4w9WgXcQ" />
+  <meta property="og:video:type" content="text/html" />
+  <meta property="og:video:width" content="1280" />
+  <meta property="og:video:height" content="720" />
+  <meta property="al:android:app_name" content="YouTube" />
+  <meta property="al:android:package" content="com.google.android.youtube" />
+  <meta property="fb:app_id" content="87741124305" />
+  <meta name="twitter:card" content="player" />
+  <meta name="twitter:site" content="@youtube" />
+  <meta name="twitter:url" content="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  <meta name="twitter:title" content="{{ .Title }}" />
+  <meta name="twitter:description" content="{{ .Description }}" />
+  <meta name="twitter:image" content="{{ .Thumbnail }}" />
+  <meta name="twitter:app:name:iphone" content="YouTube" />
+  <meta name="twitter:app:id:iphone" content="544007664" />
+  <meta name="twitter:app:name:ipad" content="YouTube" />
+  <meta name="twitter:app:id:ipad" content="544007664" />
+  <meta name="twitter:app:url:iphone"
+    content="vnd.youtube://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks" />
+  <meta name="twitter:app:url:ipad" content="vnd.youtube://www.youtube.com/watch?v=dQw4w9WgXcQ&amp;feature=applinks" />
+  <meta name="twitter:app:name:googleplay" content="YouTube" />
+  <meta name="twitter:app:id:googleplay" content="com.google.android.youtube" />
+  <meta name="twitter:app:url:googleplay" content="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+  <meta name="twitter:player" content="https://www.youtube.com/embed/dQw4w9WgXcQ" />
+  <meta name="twitter:player:width" content="1280" />
+  <meta name="twitter:player:height" content="720" />
+  <div id="watch7-content" class="watch-main-col" itemscope itemid="" itemtype="http://schema.org/VideoObject">
+    <link itemprop="url" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+    <meta itemprop="name" content="{{ .Title }}" />
+    <meta itemprop="description" content="{{ .Description }}" />
+    <meta itemprop="identifier" content="{{ .Id }}" /><span itemprop="author" itemscope
+      itemtype="http://schema.org/Person">
+      <link itemprop="url" href="{{ .UploaderUrl }}" />
+      <link itemprop="name" content="{{ .Uploader }}" />
+    </span>
+    <link itemprop="thumbnailUrl" href="{{ .Thumbnail }}" /><span itemprop="thumbnail"
+      itemscope itemtype="http://schema.org/ImageObject">
+      <link itemprop="url" href="{{ .Thumbnail }}" />
+      <meta itemprop="width" content="1280" />
+      <meta itemprop="height" content="720" />
+    </span>
+    <link itemprop="embedUrl" href="https://www.youtube.com/embed/dQw4w9WgXcQ" />
+    <meta itemprop="playerType" content="HTML5 Flash" />
+    <meta itemprop="width" content="1280" />
+  </div>
+</head>
 
 </html>
