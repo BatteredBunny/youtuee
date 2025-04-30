@@ -14,6 +14,7 @@ import (
 )
 
 type Config struct {
+	ytdlpBinary string
 	Port        int
 
 	BehindReverseProxy bool
@@ -37,7 +38,7 @@ func (app *Application) GetVideoInfo(id string) (v VideoInfo, err error) {
 		log.Println("Got cached response for ", id)
 		return cached, nil
 	} else {
-		v, err = GetVideoInfo(id)
+		v, err = GetVideoInfo(app.Conf.ytdlpBinary, id)
 		if err == nil {
 			app.CachedVideoInfo[id] = v
 		}
@@ -77,6 +78,7 @@ func (app *Application) SetupRouter() {
 }
 
 func (app *Application) ParseConfig() {
+	flag.StringVar(&app.Conf.ytdlpBinary, "yt-dlp", "yt-dlp", "Path to yt-dlp binary")
 	flag.IntVar(&app.Conf.Port, "port", 8080, "Port to listen on")
 	flag.BoolVar(&app.Conf.BehindReverseProxy, "reverse-proxy", false, "Set true if behind reverse proxy to make the ratelimiter work")
 	flag.Parse()
