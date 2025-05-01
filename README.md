@@ -28,6 +28,8 @@ imports = [
 services = {
     youtuee = {
         enable = true;
+        user = "youtuee";
+        group = "youtuee";
 
         settings = {
             secretsFile = "/etc/secrets/youtuee.env";

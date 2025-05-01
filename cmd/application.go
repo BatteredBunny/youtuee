@@ -85,7 +85,6 @@ func NewApplication() Application {
 }
 
 func (app *Application) SetupRouter() {
-	gin.SetMode(gin.ReleaseMode)
 	app.Router = gin.Default()
 	app.Router.SetHTMLTemplate(template.Must(template.ParseFS(Templates, "templates/video.gohtml")))
 

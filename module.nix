@@ -15,6 +15,18 @@ in
       default = pkgs.callPackage ./build.nix { };
     };
 
+    user = lib.mkOption {
+      type = lib.types.str;
+      default = "youtuee";
+      description = "User account under which youtuee runs.";
+    };
+
+    group = lib.mkOption {
+      type = lib.types.str;
+      default = "youtuee";
+      description = "Group under which youtuee runs.";
+    };
+
     settings = {
       port = lib.mkOption {
         type = lib.types.int;
@@ -35,11 +47,21 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    users.users = lib.mkIf (cfg.user == "youtuee") {
+      youtuee = {
+        group = cfg.group;
+        createHome = false;
+        isSystemUser = true;
+      };
+    };
+
+    users.groups.${cfg.group} = { };
+
     systemd.services.youtuee = {
       enable = true;
       serviceConfig = {
-        EnvironmentFile = cfg.secretsFile;
-        DynamicUser = true;
+        User = cfg.user;
+        Group = cfg.group;
         ProtectSystem = "full";
         ProtectHome = "yes";
         DeviceAllow = [ "" ];
@@ -59,8 +81,11 @@ in
         SystemCallArchitectures = "native";
         PrivateUsers = true;
         ExecStart = "${lib.getExe cfg.package} -port=${toString cfg.settings.port} ${lib.optionalString cfg.settings.behindReverseProxy "-reverse-proxy"}";
+        EnvironmentFile = cfg.settings.secretsFile;
         Restart = "always";
       };
+
+      environment.GIN_MODE = "release";
       wantedBy = [ "default.target" ];
     };
   };
