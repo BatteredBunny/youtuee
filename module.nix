@@ -23,6 +23,14 @@ in
       };
 
       behindReverseProxy = lib.mkEnableOption "Enable if setting up the service behind a reverse proxy" // { default = false; };
+
+      secretsFile = lib.mkOption {
+        type = lib.types.nullOr lib.types.path;
+        default = null;
+        description = ''
+          Allows specifying YT_API
+        '';
+      };
     };
   };
 
@@ -30,6 +38,7 @@ in
     systemd.services.youtuee = {
       enable = true;
       serviceConfig = {
+        EnvironmentFile = cfg.secretsFile;
         DynamicUser = true;
         ProtectSystem = "full";
         ProtectHome = "yes";

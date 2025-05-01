@@ -6,8 +6,6 @@ import (
 	assert "github.com/BatteredBunny/testingassert"
 )
 
-
-
 func TestCharSet(t *testing.T) {
 	assert.TestState = t
 	assert.HideSuccess = true

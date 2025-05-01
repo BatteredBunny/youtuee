@@ -10,6 +10,7 @@ import (
 func main() {
 	app := cmd.NewApplication()
 	app.ParseConfig()
+	app.SetupYtApi()
 
 	app.SetupRatelimiter()
 

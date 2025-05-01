@@ -6,7 +6,10 @@ Funny proxy service that impersonates youtube while at same time redirecting eve
 nix run git+https://forge.catnip.ee/batteredbunny/youtuee
 ```
 
-## Hosting on nixos
+# Hosting
+By default it will try to use ``yt-dlp``, theres an option to call the official api if you include the ``YT_API`` env var, [more info on youtube api keys](https://developers.google.com/youtube/v3/getting-started)
+
+## Nixos
 
 ```nix
 # flake.nix
@@ -23,17 +26,18 @@ imports = [
 ];
 
 services = {
-youtuee = {
-    enable = true;
+    youtuee = {
+        enable = true;
 
-    settings = {
-        behindReverseProxy = true;
-        port = 8181;
+        settings = {
+            secretsFile = "/etc/secrets/youtuee.env";
+            behindReverseProxy = true;
+            port = 8181;
+        };
     };
-};
 
-caddy.virtualHosts."youtu.ee".extraConfig = ''
-    reverse_proxy :${toString config.services.youtuee.settings.port}
-'';
+    caddy.virtualHosts."youtu.ee".extraConfig = ''
+        reverse_proxy :${toString config.services.youtuee.settings.port}
+    '';
 };
 ```

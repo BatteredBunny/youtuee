@@ -1,4 +1,4 @@
-package youtube
+package yt
 
 import (
 	"testing"
