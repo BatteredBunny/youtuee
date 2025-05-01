@@ -54,7 +54,7 @@
               go
               yt-dlp
 
-              # ngrok
+              cloudflared # cloudflared tunnel --url localhost:8080
             ];
           };
         });
