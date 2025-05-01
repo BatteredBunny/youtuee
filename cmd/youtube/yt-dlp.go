@@ -1,10 +1,11 @@
-package main
+package youtube
 
 import (
 	"encoding/json"
 	"errors"
 	"fmt"
 	"os/exec"
+	"strings"
 )
 
 type VideoInfo struct {
@@ -19,6 +20,14 @@ type VideoInfo struct {
 }
 
 var ErrFailedToFetchVideo = errors.New("failed to fetch video")
+
+func FormatDescription(description string) string {
+	description = strings.ReplaceAll(description, "\n", "")
+	if len(description) > 159 {
+		return description[:159] + "..."
+	}
+	return description
+}
 
 func GetVideoInfo(ytdlpBinary string, videoId string) (v VideoInfo, err error) {
 	url := fmt.Sprintf("https://www.youtube.com/watch?v=%s", videoId)
