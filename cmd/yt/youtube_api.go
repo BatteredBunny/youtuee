@@ -31,7 +31,7 @@ func YtApiGetVideoInfo(client *youtube.Service, videoId string) (v VideoInfo, er
 		v.Description = FormatDescription(videoData.Snippet.Description)
 		v.Uploader = videoData.Snippet.ChannelTitle
 		v.UploaderUrl = fmt.Sprintf("https://www.youtube.com/channel/%s", videoData.Snippet.ChannelId)
-		v.Thumbnail = videoData.Snippet.Thumbnails.Default.Url
+		v.Thumbnail = videoData.Snippet.Thumbnails.Maxres.Url
 	} else {
 		err = ErrFailedToRetriveInfo
 	}
