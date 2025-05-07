@@ -40,6 +40,25 @@
   <meta property="og:video:type" content="text/html" />
   <meta property="og:video:width" content="1280" />
   <meta property="og:video:height" content="720" />
+  <div id="watch7-content" class="watch-main-col" itemscope itemid="" itemtype="http://schema.org/VideoObject">
+    <link itemprop="url" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+    <meta itemprop="name" content='{{ .Title }}' />
+    <meta itemprop="description" content="{{ .Description }}" />
+    <meta itemprop="identifier" content="{{ .Id }}" /><span itemprop="author" itemscope
+      itemtype="http://schema.org/Person">
+      <link itemprop="url" href="{{ .UploaderUrl }}" />
+      <link itemprop="name" content="{{ .Uploader }}" />
+    </span>
+    <link itemprop="thumbnailUrl" href="{{ .Thumbnail }}" /><span itemprop="thumbnail" itemscope
+      itemtype="http://schema.org/ImageObject">
+      <link itemprop="url" href="{{ .Thumbnail }}" />
+      <meta itemprop="width" content="1280" />
+      <meta itemprop="height" content="720" />
+    </span>
+    <link itemprop="embedUrl" href="https://www.youtube.com/embed/dQw4w9WgXcQ" />
+    <meta itemprop="playerType" content="HTML5 Flash" />
+    <meta itemprop="width" content="1280" />
+  </div>
   <meta property="al:android:app_name" content="YouTube" />
   <meta property="al:android:package" content="com.google.android.youtube" />
   <meta property="fb:app_id" content="87741124305" />
