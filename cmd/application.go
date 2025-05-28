@@ -45,17 +45,21 @@ func (app *Application) GetVideoInfo(id string) (v yt.VideoInfo, err error) {
 		log.Println("Got cached response for ", id)
 		return cached, nil
 	} else {
-		if app.youtubeApi == nil {
-			v, err = yt.YtDlpGetVideoInfo(app.Conf.ytdlpBinary, id)
-			if err == nil {
-				app.CachedVideoInfo[id] = v
-			}
-		} else {
+		if app.youtubeApi != nil {
 			log.Println("Getting video info from yt api")
 			v, err = yt.YtApiGetVideoInfo(app.youtubeApi, id)
-			if err == nil {
+			if err != nil {
+				log.Println("Failed to fetch video:", err)
+			} else {
 				app.CachedVideoInfo[id] = v
+				return
 			}
+		}
+
+		// Fallback option
+		v, err = yt.YtDlpGetVideoInfo(app.Conf.ytdlpBinary, id)
+		if err == nil {
+			app.CachedVideoInfo[id] = v
 		}
 
 		return
