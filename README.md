@@ -43,3 +43,12 @@ services = {
     '';
 };
 ```
+
+# Development
+
+Runnings tests
+
+```
+go test ./cmd -v
+nix flake check .
+```
