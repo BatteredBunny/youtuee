@@ -1,12 +1,12 @@
 module github.com/BatteredBunny/youtuee
 
-go 1.24.2
+go 1.24.3
 
 require (
 	github.com/BatteredBunny/testingassert v0.3.3
 	github.com/didip/tollbooth/v8 v8.0.1
 	github.com/gin-gonic/gin v1.10.1
-	google.golang.org/api v0.234.0
+	google.golang.org/api v0.235.0
 )
 
 require (
