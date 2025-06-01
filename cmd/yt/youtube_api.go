@@ -31,7 +31,27 @@ func YtApiGetVideoInfo(client *youtube.Service, videoId string) (v VideoInfo, er
 		v.Description = FormatDescription(videoData.Snippet.Description)
 		v.Uploader = videoData.Snippet.ChannelTitle
 		v.UploaderUrl = fmt.Sprintf("https://www.youtube.com/channel/%s", videoData.Snippet.ChannelId)
-		v.Thumbnail = videoData.Snippet.Thumbnails.Maxres.Url
+
+		if videoData.Snippet.Thumbnails != nil {
+			var thumbnail *youtube.Thumbnail = nil
+
+			// Tries to pick highest resolution
+			if videoData.Snippet.Thumbnails.Maxres != nil {
+				thumbnail = videoData.Snippet.Thumbnails.Maxres
+			} else if videoData.Snippet.Thumbnails.High != nil {
+				thumbnail = videoData.Snippet.Thumbnails.High
+			} else if videoData.Snippet.Thumbnails.Medium != nil {
+				thumbnail = videoData.Snippet.Thumbnails.Medium
+			} else if videoData.Snippet.Thumbnails.Standard != nil {
+				thumbnail = videoData.Snippet.Thumbnails.Standard
+			} else if videoData.Snippet.Thumbnails.Default != nil {
+				thumbnail = videoData.Snippet.Thumbnails.Default
+			}
+
+			if thumbnail != nil {
+				v.Thumbnail = thumbnail.Url
+			}
+		}
 	} else {
 		err = ErrFailedToRetriveInfo
 	}
