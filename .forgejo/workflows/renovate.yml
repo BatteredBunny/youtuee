@@ -1,0 +1,23 @@
+name: Update deps
+
+on:
+  schedule:
+    - cron: "@daily"
+  workflow_dispatch:
+
+jobs:
+  renovate:
+    runs-on: latest-debian
+    container: ghcr.io/renovatebot/renovate:latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update deps
+        run: renovate
+        env:
+          RENOVATE_PLATFORM: gitea
+          RENOVATE_ENDPOINT: https://forge.catnip.ee/api/v1
+          RENOVATE_GIT_AUTHOR: "Renovate <renovate@catnip.ee>"
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          RENOVATE_LOG_LEVEL: debug
+          

@@ -55,6 +55,7 @@
               yt-dlp
 
               cloudflared
+              renovate
             ];
           };
         });
