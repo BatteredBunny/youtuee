@@ -19,5 +19,3 @@ jobs:
           RENOVATE_ENDPOINT: https://forge.catnip.ee/api/v1
           RENOVATE_GIT_AUTHOR: "Renovate <renovate@catnip.ee>"
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
-          RENOVATE_LOG_LEVEL: debug
-          
