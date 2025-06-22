@@ -1,0 +1,35 @@
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: latest-debian
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/determinate-nix-action@v3
+
+      - run: nix build .
+
+      - name: Fix hash mismatches
+        if: failure() && github.event_name == 'pull_request'
+        id: fix-hashes
+        run: |
+          git stash --include-untracked
+          git fetch --depth=1 origin "${{ github.head_ref }}"
+          git checkout -B "${{ github.head_ref }}" "${{ github.event.pull_request.head.sha }}"
+
+          determinate-nixd fix hashes --auto-apply
+
+          if ! git diff --quiet; then
+            git config user.name "forgejo-actions[bot]"
+            git config user.email "forgejo-actions[bot]@noreply.your-domain.com"
+            git add --update --ignore-removal .
+            git commit -m "[dependabot skip] Automatically fix Nix hashes"
+            git push origin "${{ github.head_ref }}"
+          fi
+
+          git checkout -
+          git stash pop || true
