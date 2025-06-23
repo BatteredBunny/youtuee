@@ -3,7 +3,7 @@ on:
 
 jobs:
   build:
-    runs-on: latest-debian
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
@@ -18,17 +18,17 @@ jobs:
         id: fix-hashes
         run: |
           git stash --include-untracked
-          git fetch --depth=1 origin "${{ github.head_ref }}"
-          git checkout -B "${{ github.head_ref }}" "${{ github.event.pull_request.head.sha }}"
+          git fetch --depth=1 origin "$GITHUB_HEAD_REF"
+          git checkout -B "$GITHUB_HEAD_REF" "${{ github.event.pull_request.head.sha }}"
 
           determinate-nixd fix hashes --auto-apply
 
           if ! git diff --quiet; then
-            git config user.name "forgejo-actions[bot]"
-            git config user.email "forgejo-actions[bot]@noreply.your-domain.com"
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add --update --ignore-removal .
             git commit -m "[dependabot skip] Automatically fix Nix hashes"
-            git push origin "${{ github.head_ref }}"
+            git push origin "$GITHUB_HEAD_REF"
           fi
 
           git checkout -

@@ -3,7 +3,7 @@
 Funny proxy service that impersonates youtube while at same time redirecting everything to rick roll
 
 ```bash
-nix run git+https://forge.catnip.ee/batteredbunny/youtuee
+nix run github:batteredbunny/youtuee
 ```
 
 # Hosting
@@ -14,7 +14,7 @@ By default it will try to use ``yt-dlp``, theres an option to call the official 
 ```nix
 # flake.nix
 youtuee = {
-    url = "git+https://forge.catnip.ee/batteredbunny/youtuee";
+    url = "github:batteredbunny/youtuee";
     inputs.nixpkgs.follows = "nixpkgs";
 };
 ```
