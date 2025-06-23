@@ -10,7 +10,7 @@ import (
 func (app *Application) PathHandler(c *gin.Context) {
 	path := c.Param("path")
 	if path == "/" {
-		c.String(http.StatusOK, "https://github.com/BatteredBunny/youtuee")
+		c.Redirect(http.StatusPermanentRedirect, "https://github.com/BatteredBunny/youtuee")
 	} else {
 		// YouTube video IDs are always 11 characters {a-zA-Z0-9-_}
 		id := strings.TrimPrefix(path, "/")
