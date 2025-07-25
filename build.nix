@@ -3,7 +3,7 @@ buildGoModule {
   src = ./.;
 
   name = "youtuee";
-  vendorHash = "sha256-Bj1OUYz9XjQxoKyP3SpkC7fHtT7M0bcYE3NPyDX0+4E=";
+  vendorHash = "sha256-541DVPuW92jvhDjE0tgKTpaLHnNu2kKzIlvOspMEHRA=";
 
   ldflags = [
     "-s"
