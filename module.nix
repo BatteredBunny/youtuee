@@ -1,7 +1,8 @@
-{ pkgs
-, config ? pkgs.config
-, lib ? pkgs.lib
-, ...
+{
+  pkgs,
+  config ? pkgs.config,
+  lib ? pkgs.lib,
+  ...
 }:
 let
   cfg = config.services.youtuee;
@@ -34,7 +35,11 @@ in
         default = 8080;
       };
 
-      behindReverseProxy = lib.mkEnableOption "Enable if setting up the service behind a reverse proxy" // { default = false; };
+      behindReverseProxy =
+        lib.mkEnableOption "Enable if setting up the service behind a reverse proxy"
+        // {
+          default = false;
+        };
 
       secretsFile = lib.mkOption {
         type = lib.types.nullOr lib.types.path;

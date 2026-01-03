@@ -4,9 +4,10 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , ...
+    {
+      self,
+      nixpkgs,
+      ...
     }:
     let
       inherit (nixpkgs) lib;
@@ -15,25 +16,32 @@
 
       forAllSystems = lib.genAttrs systems;
 
-      nixpkgsFor = forAllSystems (system: import nixpkgs {
-        inherit system;
-      });
+      nixpkgsFor = forAllSystems (
+        system:
+        import nixpkgs {
+          inherit system;
+        }
+      );
     in
     {
       overlays.default = final: prev: {
         youtuee = final.callPackage ./build.nix { };
       };
 
-      checks = forAllSystems (system:
+      checks = forAllSystems (
+        system:
         let
           pkgs = nixpkgsFor.${system};
         in
         {
-          service = pkgs.callPackage ./test.nix { nixosModule = self.nixosModules.default; };
+          service = pkgs.callPackage ./test.nix {
+            inherit self;
+          };
         }
       );
 
-      packages = forAllSystems (system:
+      packages = forAllSystems (
+        system:
         let
           pkgs = nixpkgsFor.${system};
           overlay = lib.makeScope pkgs.newScope (final: self.overlays.default final pkgs);
@@ -44,7 +52,8 @@
         }
       );
 
-      devShells = forAllSystems (system:
+      devShells = forAllSystems (
+        system:
         let
           pkgs = nixpkgsFor.${system};
         in
@@ -54,10 +63,11 @@
               go
               yt-dlp
 
-              cloudflared 
+              cloudflared
             ];
           };
-        });
+        }
+      );
 
       nixosModules.default = import ./module.nix;
     };
