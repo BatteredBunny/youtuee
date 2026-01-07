@@ -6,7 +6,7 @@ require (
 	github.com/BatteredBunny/testingassert v0.3.3
 	github.com/didip/tollbooth/v8 v8.0.1
 	github.com/gin-gonic/gin v1.11.0
-	google.golang.org/api v0.258.0
+	google.golang.org/api v0.259.0
 )
 
 require (
