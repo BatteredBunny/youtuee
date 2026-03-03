@@ -1,4 +1,4 @@
-package cmd
+package internal
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (app *Application) PathHandler(c *gin.Context) {
+func (app *Application) pathHandler(c *gin.Context) {
 	path := c.Param("path")
 	if path == "/" {
 		c.Redirect(http.StatusPermanentRedirect, "https://github.com/BatteredBunny/youtuee")
@@ -15,7 +15,7 @@ func (app *Application) PathHandler(c *gin.Context) {
 		// YouTube video IDs are always 11 characters {a-zA-Z0-9-_}
 		id := strings.TrimPrefix(path, "/")
 
-		if !VerifyPath(id) {
+		if !verifyPath(id) {
 			c.Redirect(http.StatusTemporaryRedirect, "https://www.youtube.com")
 			return
 		}
@@ -23,7 +23,7 @@ func (app *Application) PathHandler(c *gin.Context) {
 		// Cut away junk after the ID, helps with caching
 		id = id[:11] // VerifyPath made sure this is 11 or longer
 
-		v, err := app.GetVideoInfo(id)
+		v, err := app.getVideoInfo(id)
 		if err != nil {
 			c.String(http.StatusInternalServerError, err.Error())
 			return

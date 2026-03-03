@@ -51,6 +51,6 @@ services = {
 Runnings tests
 
 ```
-go test ./cmd -v
+go test ./internal -v
 nix flake check .
 ```

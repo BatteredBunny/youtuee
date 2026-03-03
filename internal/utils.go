@@ -1,6 +1,6 @@
-package cmd
+package internal
 
-func VerifyRune(char rune) bool {
+func verifyRune(char rune) bool {
 	return (char >= 'a' && char <= 'z') ||
 		(char >= 'A' && char <= 'Z') ||
 		(char >= '0' && char <= '9') ||
@@ -8,15 +8,15 @@ func VerifyRune(char rune) bool {
 		(char == '_')
 }
 
-const EXPECTED_ID_LENGTH = 11
+const expected_youtube_video_id_length = 11
 
-func VerifyPath(id string) bool {
-	if len(id) < EXPECTED_ID_LENGTH {
+func verifyPath(id string) bool {
+	if len(id) < expected_youtube_video_id_length {
 		return false
 	}
 
 	for i, char := range id {
-		if i >= EXPECTED_ID_LENGTH {
+		if i >= expected_youtube_video_id_length {
 			if char == '?' { // Only urls with ? will possibly be longer than 11 characters long
 				// Verification complete
 				break
@@ -25,7 +25,7 @@ func VerifyPath(id string) bool {
 			}
 		}
 
-		if !VerifyRune(char) {
+		if !verifyRune(char) {
 			return false
 		}
 	}
