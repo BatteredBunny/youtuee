@@ -1,14 +1,14 @@
 {
-  buildGoModule,
+  buildGoLatestModule,
   lib,
   makeWrapper,
   yt-dlp,
 }:
-buildGoModule {
+buildGoLatestModule {
   src = ./.;
 
   name = "youtuee";
-  vendorHash = "sha256-/RbwK0Px1xvOjtzsvClSw3f8Q78YludgN1CR2Bzd8Xg=";
+  vendorHash = "sha256-xZR42luAq/QKBxpoTu77VTvklGOz6foF8O+5CmFlE3c=";
 
   ldflags = [
     "-s"
